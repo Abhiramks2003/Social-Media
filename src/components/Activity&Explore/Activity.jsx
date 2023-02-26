@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Activity.css"
 import { Link } from 'react-router-dom'
-import Footer from './Footer'
+import Footer from '../Mainpage/Footer'
 const Activity = () => {
     return (
         <div className='bg-light activity-div'>

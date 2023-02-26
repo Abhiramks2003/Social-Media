@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import "./Explore.css";
-import Footer from './Footer';
+import Footer from '../Mainpage/Footer'
 const Explore = () => {
     const images = [];
     for (let i = 0; i < 27; i++) {

@@ -1,16 +1,30 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Postitem from './Postitem';
 import "./Posts.css";
-
+import axios from 'axios';
 const Posts = () => {
-  const a = [];
-  for (let i = 0; i < 10; i++) {
-    a.push(i);
+  const [postData, setPostData] = useState([]);
+  const host = 'http://192.168.1.53:5000';
+  let url = `${host}/api/post`;
+
+  const getPostItems = async () => {
+    try {
+      const res = await axios.get(url);
+      console.log(res.data);
+      setPostData(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   }
+
+  useEffect(()=>{
+    getPostItems();
+  },[])
+
   return (
     <div className='bg-light post-div'>
       <div className="scroll-post">
-        {a.map(() => <Postitem />)}
+        {postData.map((post) => <Postitem post={post} />)}
       </div>
 
     </div>

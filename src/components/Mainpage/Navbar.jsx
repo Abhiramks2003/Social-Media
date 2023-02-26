@@ -4,7 +4,7 @@ import axios from 'axios';
 import { BiSearchAlt, BiSun, BiMoon } from 'react-icons/bi';
 import { CgAddR } from 'react-icons/cg';
 import "./navbar.css";
-import DemoContext from '../contexts/Democontext';
+import DemoContext from '../../contexts/Democontext';
 const Navbar = (props) => {
 
     const context = useContext(DemoContext);

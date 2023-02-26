@@ -6,7 +6,7 @@ import "./Message.css"
 import Primary from './Primary';
 import General from './General';
 import Requests from './Requests';
-import Footer from './Footer';
+import Footer from '../Mainpage/Footer';
 const Messages = () => {
     const [msg, setMsg] = useState({ primary: true, general: false, request: false,clr1:"black",clr2:"#818589",clr3:"#818589"});
     let element;
