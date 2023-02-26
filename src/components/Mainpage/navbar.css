@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.brand-logo {
+    font-weight: bold;
+}
+
+.search-bar {
+    height: 40px;
+    width: 450px;
+    background-color: #E8E8E8;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    padding-left: 5px;
+}
+
+.search-form {
+    background-color: #E8E8E8;
+    border: none;
+    border-radius: 20px;
+    margin-left: 20rem;
+}
+
+.nav-icons {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.search-icon {
+    width: 30px;
+    height: 30px;
+    padding-left: 7px;
+}
+
+.function-icons {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 8rem;
+}
+
+.icon-bg {
+    background-color: #E8E8E8;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    margin-left: 16px;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+}
+
+@media only screen and (max-width: 420px) {
+    .function-icons {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 0;
+    }
+}

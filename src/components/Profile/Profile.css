@@ -1,0 +1,22 @@
+.profile-page{
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar{
+    width: 30rem;
+    height: 100%;
+    background-color: grey;
+}
+
+.profile-page-icons{
+    display: flex;
+    justify-content: end;
+}
+
+.profile-btns{
+    border: none;
+    width: 7rem;
+    height: 2rem;
+    margin-right: 3px;
+}

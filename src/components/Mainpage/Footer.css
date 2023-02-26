@@ -1,0 +1,20 @@
+
+@media only screen and (max-width: 420px) {
+    .footer-main {
+        width: 100%;
+        height: 55px;
+        position: fixed;
+        bottom: 0;
+    }
+
+    .footer-icon {
+        width: 46px;
+        height: 46px;
+    }
+
+    .home-icon {
+        width: 30px;
+        height: 30px;
+        margin-top: 10px;
+    }
+}

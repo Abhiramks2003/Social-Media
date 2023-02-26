@@ -1,0 +1,11 @@
+.suggestion-list {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y:scroll;
+}
+
+.suggestion-list::-webkit-scrollbar {
+    display: none;
+}
