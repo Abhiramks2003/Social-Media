@@ -12,7 +12,7 @@ const Navbar = (props) => {
 
     const [darkMode, setdDarkMode] = useState(false);
     const [postItems, setPostItems] = useState({ userid: "", image: null, description: "", location: "" });
-    const [close, setClose] = useState(true)
+    
     const { image, description, location } = postItems;
 
     const host = 'http://192.168.1.53:5000';
@@ -63,7 +63,7 @@ const Navbar = (props) => {
         <div>
             <nav className={`navbar mx-auto navbar-expand-lg ${!darkMode ? "bg-light" : "bg-dark navbar-dark"}`}>
                 <div className="container-fluid">
-                    <Link className="navbar-brand brand-logo" to="/">{name}</Link>
+                    <Link className="navbar-brand brand-logo" to="/">{userId}</Link>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <form className='search-form' role="search">
                             <i><BiSearchAlt className='search-icon' /></i>
@@ -107,13 +107,12 @@ const Navbar = (props) => {
                                     <label htmlFor="location" className="form-label">Add Location</label>
                                     <input type="text" className="form-control" id="location" name="location" onChange={onChange} />
                                 </div>
-
-
+                                <button type="submit" className="btn btn-primary">Post</button>
                             </form>
                         </div>
                         <div className="modal-footer">
 
-                            <button type="submit" className="btn btn-primary">Post</button>
+
                         </div>
                     </div>
                 </div>
