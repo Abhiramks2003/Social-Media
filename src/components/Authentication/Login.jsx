@@ -6,7 +6,7 @@ const Login = (props) => {
     //const { setDetails } = context
     const [credentials, setCredentials] = useState({ id: "", password: "" })
     let navigate = useNavigate();
-    
+
     const context = useContext(DemoContext);
     const { setName, setImageData } = context;
     const host = 'http://192.168.1.53:5000';
@@ -14,43 +14,49 @@ const Login = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         let url = `${host}/api/login`
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ id: credentials.id, password: credentials.password })
-        });
-        const json = await response.json()
-        console.log(json)
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: credentials.id, password: credentials.password })
+            });
+            const json = await response.json()
+            console.log(json)
 
-        const { _doc, image } = json;
-        const { data, mimetype } = image;
-        const { name,id } = _doc;
-        console.log(mimetype);
-        localStorage.setItem('imgtype', mimetype)
+            const { _doc, image } = json;
+            const { data, mimetype } = image;
+            const { name, id } = _doc;
+            console.log(mimetype);
+            localStorage.setItem('imgtype', mimetype);
 
-        if (json.login) {
-            //Save the authtoken and redirect
-            //localStorage.setItem('token', json.authToken)
-            localStorage.setItem('login', json.login);
-            setName(name);
-            localStorage.setItem('name', name);
-            localStorage.setItem('userId',id);
-            //const base64Data = btoa(String.fromCharCode(...new Uint8Array(data.data)));
-            let str = '';
-            for (let i = 0; i < data.data.length; i++) {
-                str += String.fromCharCode(data.data[i]);
+            if (json.login) {
+                //Save the authtoken and redirect
+                //localStorage.setItem('token', json.authToken)
+                localStorage.setItem('login', json.login);
+                setName(name);
+                localStorage.setItem('name', name);
+                localStorage.setItem('userId', id);
+                //const base64Data = btoa(String.fromCharCode(...new Uint8Array(data.data)));
+                let str = '';
+                for (let i = 0; i < data.data.length; i++) {
+                    str += String.fromCharCode(data.data[i]);
+                }
+                const base64Data = btoa(str);
+
+                setImageData(`data:${mimetype};base64,` + base64Data);
+                localStorage.setItem('image', base64Data);
+                navigate('/');
             }
-            const base64Data = btoa(str);
+            else {
+                console.log("Login Failed!!!")
+            }
+        } catch (error) {
+            console.error(error);
+        }
 
-            setImageData(`data:${mimetype};base64,` + base64Data);
-            localStorage.setItem('image', base64Data);
-            navigate('/');
-        }
-        else {
-            console.log("Login Failed!!!")
-        }
+
     }
 
     const onChange = (e) => {

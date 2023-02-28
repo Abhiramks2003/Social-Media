@@ -9,7 +9,7 @@ const Profilebar = () => {
         <>
             <nav className="navbar navbar-expand-lg bg-light">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to="/profile"><h3>{userId}</h3></Link>
+                    <Link className="navbar-brand" to="/"><h3>{userId}</h3></Link>
                     <div className='profile-bar-icons'>
                         <button className='profile-btns btn'>Edit Profile</button>
                         <button className='profile-btns btn'>Share Profile</button>

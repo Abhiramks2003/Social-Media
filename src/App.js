@@ -13,11 +13,12 @@ import DemoContext from './contexts/Democontext';
 function App() {
   const [name, setName] = useState('')
   const [imageData, setImageData] = useState(null);
+  
   const contextValue = {
     name,
     imageData,
     setName,
-    setImageData
+    setImageData,
   }
   return (
 

@@ -8,9 +8,6 @@ const Comments = (props) => {
 
     const [postImage, setPostImage] = useState('');
     const [postUserImage, setPostUserImage] = useState('');
-    const { post } = props;
-    const { userid, datetime, description, images, location, userImage } = post;
-
 
     useEffect(() => {
         const dataNew = new Uint8Array(userImage.data.data);

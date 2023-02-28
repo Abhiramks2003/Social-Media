@@ -1,24 +1,16 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { BiMessageSquareAdd, BiSearchAlt } from 'react-icons/bi';
-import { AiOutlineControl } from 'react-icons/ai'
+import { AiOutlineControl } from 'react-icons/ai';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 import "./Message.css"
 import Primary from './Primary';
 import General from './General';
 import Requests from './Requests';
 import Footer from '../Mainpage/Footer';
 const Messages = () => {
-    const [msg, setMsg] = useState({ primary: true, general: false, request: false,clr1:"black",clr2:"#818589",clr3:"#818589"});
-    let element;
-    if (msg.primary) {
-        element = <Primary />;
-    }
-    else if (msg.general && !msg.primary) {
-        element = <General />;
-    }
-    else if (msg.request) {
-        element = <Requests />
-    }
+
     return (
         <>
             <div className='bg-light msg-div'>
@@ -34,27 +26,35 @@ const Messages = () => {
                         <i style={{ backgroundColor: "#E8E8E8", border: "none", borderRadius: "0px 20px 20px 0px" }}><AiOutlineControl className='search-icon mx-2' /></i>
                     </form>
                 </div>
+                <Tabs>
+                    <TabList>
+                        <div className="msg-tab msg-tab-ul mt-3">
+                            <Tab>Primary</Tab>
+                            <Tab>General</Tab>
+                            <Tab>Requests(2)</Tab>
+                        </div>
+                    </TabList>
+                    <TabPanel>
+                        <div className="primary-msg">
+                            <Primary />
+                        </div>
+                    </TabPanel>
+                    <TabPanel>
+                        <div className="primary-msg">
+                            <General />
+                        </div>
+                    </TabPanel>
+                    <TabPanel>
+                        <div className="primary-msg">
+                            <Requests />
+                        </div>
+                    </TabPanel>
+                </Tabs>
 
-                <div className="msg-tab my-3 border-bottom">
-                    <ul>
-                        <li style={{color:msg.clr1}} onClick={() => {
-                            setMsg({ primary: true, general: false, request: false,clr1:"black",clr2:"#818589",clr3:"#818589"});
-                        
-                        }}>Primary</li>
-                        <li style={{color:msg.clr2}} onClick={() => {
-                            setMsg({ primary: false, general: true, request: false,clr1:"#818589",clr2:"black",clr3:"#818589"});
-                        }}>General</li>
-                        <li style={{color:msg.clr3}} onClick={() => {
-                            setMsg({ primary: false, general: false, request: true,clr1:"#818589",clr2:"#818589",clr3:"black" });
-                        }}>Requests(2)</li>
-                    </ul>
-                </div>
-                <div className="primary-msg">
-                        {element}
-                </div>
+
             </div>
             <div className='ft'>
-            <Footer/>
+                <Footer />
             </div>
         </>
     )
