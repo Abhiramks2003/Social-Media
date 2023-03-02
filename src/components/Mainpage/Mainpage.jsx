@@ -1,4 +1,4 @@
-import React,{useEffect, useContext} from 'react'
+import React, { useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Activity from '../Activity&Explore/Activity'
 import Explore from '../Activity&Explore/Explore'
@@ -9,23 +9,25 @@ import Suggestion from '../Stories&Suggestion/Suggestion'
 import "./Mainpage.css";
 import Footer from './Footer'
 import Navbar from './Navbar'
-
+import DemoContext from '../../contexts/Democontext'
 const Mainpage = (props) => {
   const navigate = useNavigate();
+  const context = useContext(DemoContext);
+  const { darkMode } = context;
   useEffect(() => {
-    if (localStorage.getItem('login')){
+    if (localStorage.getItem('login')) {
 
     }
-    else{
-        navigate('/login');
+    else {
+      navigate('/login');
     }
   }, [])
-  
+
   return (
     <>
       <Navbar />
-      <div className='d-flex main-page justify-content-between'>
-        <div className="act-exp">
+      <div className='d-flex main-page justify-content-between' style={{backgroundColor:darkMode?'black':'white'}}>
+        <div className="act-exp">a
           <Activity />
           <Explore />
         </div>

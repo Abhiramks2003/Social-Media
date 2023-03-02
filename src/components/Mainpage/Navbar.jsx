@@ -8,36 +8,29 @@ import DemoContext from '../../contexts/Democontext';
 const Navbar = (props) => {
 
     const context = useContext(DemoContext);
-    const { name, setName, imageData, setImageData } = context;
+    const { setName, imageData, setImageData, darkMode, setDarkMode } = context;
 
-    const [darkMode, setdDarkMode] = useState(false);
+
     const [postItems, setPostItems] = useState({ userid: "", image: null, description: "", location: "" });
-    
+    const [showModal, setShowModal] = useState(true);
     const { image, description, location } = postItems;
 
     const host = 'http://192.168.1.53:5000';
     let url = `${host}/api/post`;
 
     const userId = localStorage.getItem('userId');
-
+    //Handlepost
     const handlePost = async (e) => {
         e.preventDefault();
-
         const formDataObj = new FormData();
         formDataObj.append('userid', userId);
         formDataObj.append('image', image);
         formDataObj.append('description', description);
         formDataObj.append('location', location);
-
         try {
             const res = await axios.post(url, formDataObj);
             console.log(res.data);
-            if (res.data.post) {
-                console.log("Posted successfully");
-
-            } else {
-                console.log("Failed to Post");
-            }
+            setShowModal(false);
         } catch (err) {
             console.log(err);
         }
@@ -72,9 +65,9 @@ const Navbar = (props) => {
                     </div>
                     <div className="function-icons">
                         <i className='icon-bg'>
-                            <CgAddR type='button' data-bs-toggle="modal" data-bs-target="#staticBackdrop" className='nav-icons' />
+                            <CgAddR type='button' data-bs-toggle="modal" data-bs-target="#postUpload" className='nav-icons' />
                         </i>
-                        <i className='icon-bg' onClick={() => setdDarkMode(!darkMode)}>
+                        <i className='icon-bg' onClick={() => setDarkMode(!darkMode)}>
                             {!darkMode ? <BiMoon className='nav-icons' /> : <BiSun className='nav-icons' />}
                         </i>
                         <i className="icon-bg">
@@ -86,11 +79,12 @@ const Navbar = (props) => {
                 </div>
             </nav>
 
-            <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+            <div className={`modal fade ${showModal ? "" : "d-none"}`} id="postUpload" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="postUploadLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="staticBackdropLabel">Add new Post</h1>
+                            <h1 className="modal-title fs-5" id="postUploadLabel">Add new Post</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">

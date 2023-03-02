@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import "./Suggestion.css"
+import DemoContext from '../../contexts/Democontext';
 const Suggestion = () => {
+    const context = useContext(DemoContext);
+    const { darkMode } = context;
     return (
-        <div className='bg-light msg-div'>
+        <div className={`${!darkMode ? "bg-light" : "bg-dark"} msg-div`}>
             <div className="d-flex justify-content-between mx-3 py-3 border-bottom">
                 <h6>Suggested For You</h6>
                 <Link to="/" style={{ color: "#818589", textDecoration: "none", fontWeight: "500" }}>See all</Link>

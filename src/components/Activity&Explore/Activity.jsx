@@ -1,10 +1,13 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import "./Activity.css"
 import { Link } from 'react-router-dom'
 import Footer from '../Mainpage/Footer'
+import DemoContext from '../../contexts/Democontext'
 const Activity = () => {
+    const context = useContext(DemoContext);
+    const {darkMode} = context;
     return (
-        <div className='bg-light activity-div'>
+        <div className={`${!darkMode ? "bg-light" : "bg-dark"} activity-div`}>
 
             <div className="d-flex justify-content-between mx-3 py-3 border-bottom">
                 <h6>Activity</h6>

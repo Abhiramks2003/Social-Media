@@ -7,7 +7,9 @@ const DemoContext = React.createContext({
     setName: () => { },
     setImageData:()=>{},
     postData:[],
-    setPostData:()=>{}
+    setPostData:()=>{},
+    darkMode:false,
+    setDarkMode:()=>{}
 })
 
 export default DemoContext

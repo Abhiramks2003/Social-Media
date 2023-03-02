@@ -1,35 +1,40 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,useContext } from 'react'
 import { AiFillHeart } from "react-icons/ai";
 import { FaRegComment, FaBookmark } from "react-icons/fa";
 import { GrShareOption } from "react-icons/gr";
-
+import DemoContext from '../../contexts/Democontext';
 const Postitem = (props) => {
     const [like, setLike] = useState(false);
     const [save, setSave] = useState(false);
     const [postImage, setPostImage] = useState('');
     const [postUserImage, setPostUserImage] = useState('');
+    const context = useContext(DemoContext);
+    const {darkMode} = context;
     const handleLike = () => {
         setLike(!like);
     }
     const { post, index } = props;
     const { userid, datetime, description, images, location, userImage } = post;
-    console.log(typeof (datetime));
-    useEffect(() => {
-        if (userImage && userImage.length > 0) {
-            const { data, mimetype } = userImage[0];
-            setPostUserImage(`data:${mimetype};base64,${data}`);
-        }
-    }, [userImage]);
+    let dateObj = new Date(datetime);
+    var day = dateObj.getDate();
+    var month = dateObj.toLocaleString('default', { month: 'long' })
+    var year = dateObj.getFullYear();
+    var date = (day.toString() + " " + month + " " + year.toString());
 
     useEffect(() => {
-        if (images && images.length > 0) {
-            const { data, mimetype } = images[0];
+        const userImageData = userImage?.[0];
+        const imageData = images?.[0];
+        if (userImageData) {
+            const { data, mimetype } = userImageData;
+            setPostUserImage(`data:${mimetype};base64,${data}`);
+        }
+        if (imageData) {
+            const { data, mimetype } = imageData;
             const newPostImage = `data:${mimetype};base64,${data}`;
             setPostImage(newPostImage);
         }
-    }, [images]);
-
-
+    }, [userImage, images]);
+    
 
     const handleSave = () => {
         setSave(!save);
@@ -42,7 +47,7 @@ const Postitem = (props) => {
                         <img className='profile-pic' src={postUserImage} alt="" />
                     </i>
                     <div className='mx-0'>
-                        <p style={{ fontWeight: "700", fontSize: "14px", paddingLeft: "10px", height: "8px" }}>{userid}</p>
+                        <p style={{ fontWeight: "700", fontSize: "14px", paddingLeft: "10px", height: "8px", color:darkMode?'white':'black' }}>{userid}</p>
                         <p style={{ fontWeight: "600", fontSize: "11px", paddingLeft: "10px", color: "#818589", width: "150px", height: "1px" }}>{location}</p>
                     </div>
                 </div>
@@ -52,20 +57,20 @@ const Postitem = (props) => {
                     <i type="button" data-bs-toggle="modal" data-bs-target={`#exampleModal-${index}`}>
                         <FaRegComment className='search-icon mx-4' />
                     </i>
-                    <i type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                    <i type="button" data-bs-toggle="modal" data-bs-target={`#exampleModal2-${index}`}>
                         <GrShareOption className='search-icon' />
                     </i>
                     <FaBookmark onClick={handleSave} className={save ? "save-icon-clicked" : "save-icon"} />
                 </div>
                 <div className="liked-by">
                     <img className='liked-dp' src="https://w7.pngwing.com/pngs/326/85/png-transparent-google-logo-google-text-trademark-logo.png" alt="" />
-                    <p>Liked by abhiram and 200 others</p>
+                    <p style={{color:darkMode?'white':'black'}}>Liked by abhiram and 200 others</p>
                 </div>
-                <div className="comments">
+                <div className="comments" style={{color:darkMode?'white':'black'}}>
                     <p>{userid}: {description}</p>
                 </div>
-                <div>
-                    <p>{} </p>
+                <div className="comments" style={{color:darkMode?'white':'black'}}>
+                    <p>{date} </p>
                 </div>
             </div>
 

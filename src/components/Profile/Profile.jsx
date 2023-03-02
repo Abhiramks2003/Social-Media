@@ -8,7 +8,7 @@ import DemoContext from '../../contexts/Democontext';
 const Profile = () => {
   const context = useContext(DemoContext);
   const { name, setName, imageData, setImageData } = context;
-
+  
   useEffect(() => {
     const Storedname = localStorage.getItem('name');
     const StoredImage = localStorage.getItem('image');

@@ -13,13 +13,17 @@ import DemoContext from './contexts/Democontext';
 function App() {
   const [name, setName] = useState('')
   const [imageData, setImageData] = useState(null);
-  
+  const [darkMode, setDarkMode] = useState(false);
   const contextValue = {
     name,
     imageData,
     setName,
     setImageData,
+    darkMode,
+    setDarkMode
   }
+
+  
   return (
 
     <div className='App'>

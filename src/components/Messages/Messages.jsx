@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { BiMessageSquareAdd, BiSearchAlt } from 'react-icons/bi';
 import { AiOutlineControl } from 'react-icons/ai';
@@ -9,11 +9,13 @@ import Primary from './Primary';
 import General from './General';
 import Requests from './Requests';
 import Footer from '../Mainpage/Footer';
+import DemoContext from '../../contexts/Democontext';
 const Messages = () => {
-
+    const context = useContext(DemoContext);
+    const { darkMode } = context;
     return (
         <>
-            <div className='bg-light msg-div'>
+            <div className={`${darkMode?"bg-dark":"bg-light"} msg-div`}>
                 <div className="d-flex justify-content-between mx-3 py-3">
                     <h6>Messages</h6>
                     <Link to="/" style={{ color: "#818589", textDecoration: "none", fontWeight: "500" }}><BiMessageSquareAdd /></Link>
