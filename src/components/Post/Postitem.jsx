@@ -9,11 +9,12 @@ const Postitem = (props) => {
     const [postImage, setPostImage] = useState('');
     const [postUserImage, setPostUserImage] = useState('');
     const [likeStatus, setLikeStatus] = useState(false);
-    
+
     const context = useContext(DemoContext);
     const { darkMode } = context;
     const { post, index } = props;
-    const { _id, like, userid, datetime, description, images, location, userImage } = post;
+    const { _id, like, userid, datetime, likecount, description, images, location, userImage } = post;
+
     const handleLike = async () => {
         const host = 'http://192.168.1.53:5000';
         let url = `${host}/api/like`;
@@ -77,7 +78,7 @@ const Postitem = (props) => {
                 </div>
                 <div className="liked-by">
                     <img className='liked-dp' src="https://w7.pngwing.com/pngs/326/85/png-transparent-google-logo-google-text-trademark-logo.png" alt="" />
-                    <p style={{ color: darkMode ? 'white' : 'black' }}>Liked by abhiram and 200 others</p>
+                    <p style={{ color: darkMode ? 'white' : 'black' }}>Liked by abhiram and {likecount} others</p>
                 </div>
                 <div className="comments" style={{ color: darkMode ? 'white' : 'black' }}>
                     <p>{userid}: {description}</p>
