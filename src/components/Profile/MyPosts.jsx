@@ -19,7 +19,7 @@ const MyPosts = (props) => {
             const newPostImage = `data:${mimetype};base64,${data}`;
             setPostImage(newPostImage);
         }
-    }, [])
+    }, [images])
 
     return (
         <>

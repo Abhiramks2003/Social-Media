@@ -2,7 +2,7 @@
 @media only screen and (max-width: 420px) {
     .footer-main {
         width: 100%;
-        height: 55px;
+        height: 3.5rem;
         position: fixed;
         bottom: 0;
     }

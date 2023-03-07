@@ -21,13 +21,13 @@ const Mainpage = (props) => {
     else {
       navigate('/login');
     }
-  }, [])
+  }, [navigate])
 
   return (
     <>
       <Navbar />
       <div className='d-flex main-page justify-content-between' style={{backgroundColor:darkMode?'black':'white'}}>
-        <div className="act-exp">a
+        <div className="act-exp">
           <Activity />
           <Explore />
         </div>

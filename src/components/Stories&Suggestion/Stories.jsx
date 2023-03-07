@@ -17,7 +17,7 @@ const Stories = () => {
   }, [])
 
   return (
-    <div className={`${!darkMode ? "bg-light" : "bg-dark"} story-div`}>
+    <div className={`${!darkMode ? "bg-light" : "bg-dark text-white"} story-div`}>
       <div className="story-list">
         <div className="story-item">
           <img className='story-pic mx-2 my-3' src={imageData} alt="" />

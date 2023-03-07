@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import axios from 'axios';
@@ -9,22 +9,21 @@ import MyPosts from './MyPosts';
 
 const Profile = () => {
   const context = useContext(DemoContext);
+  const [myPosts, setMyPosts] = useState([]);
   const { name, setName, imageData, setImageData } = context;
   const host = 'http://192.168.1.53:5000';
   const userId = localStorage.getItem('userId');
   let url = `${host}/api/profile/${userId}`;
-  const [myPosts, setMyPosts] = useState([]);
 
   const LoadmyPosts = async () => {
     try {
       const res = await axios.get(url);
-      console.log(res.data);
       setMyPosts(res.data);
+      console.log(res.data);
     } catch (error) {
-
+      console.error(error);
     }
   }
-
 
   useEffect(() => {
     const Storedname = localStorage.getItem('name');
@@ -45,9 +44,15 @@ const Profile = () => {
           <h4>{name}</h4>
           <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
           <div className='publicity'>
-            <h5>Posts  {myPosts.length}</h5>
-            <h5>Followers 10k</h5>
-            <h5>Following 620</h5>
+            <button className='follow-btn' style={{ backgroundColor: "white", color: "black" }}> Posts
+              <span className="followers">&nbsp; {myPosts.length} </span>
+            </button>
+            <button className='follow-btn'> Followers
+              <span className="followers">&nbsp; 65.7K </span>
+            </button>
+            <button className='follow-btn'> Following
+              <span className="followers">&nbsp; 650 </span>
+            </button>
           </div>
         </div>
         <Tabs>

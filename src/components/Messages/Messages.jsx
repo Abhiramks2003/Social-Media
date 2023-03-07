@@ -14,7 +14,7 @@ const Messages = () => {
     const context = useContext(DemoContext);
     const { darkMode } = context;
     return (
-        <>
+        <div className='d-flex flex-column'>
             <div className={`${darkMode?"bg-dark":"bg-light"} msg-div`}>
                 <div className="d-flex justify-content-between mx-3 py-3">
                     <h6>Messages</h6>
@@ -55,10 +55,10 @@ const Messages = () => {
 
 
             </div>
-            <div className='ft'>
+            <div className='ft bg-dark'>
                 <Footer />
             </div>
-        </>
+        </div>
     )
 }
 
