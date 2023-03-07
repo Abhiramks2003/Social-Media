@@ -18,10 +18,11 @@ const Postitem = (props) => {
     const handleLike = async () => {
         const host = 'http://192.168.1.53:5000';
         let url = `${host}/api/like`;
+        const userId = localStorage.getItem('userId');
         try {
             const res = await axios.post(url, {
                 postid: _id,
-                userid: userid
+                userid: userId
             });
             console.log(res.data);
             setLikeStatus(res.data.like);
