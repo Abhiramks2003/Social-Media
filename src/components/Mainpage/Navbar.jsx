@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { BiSearchAlt, BiSun, BiMoon } from 'react-icons/bi';
 import { CgAddR } from 'react-icons/cg';
 import "./navbar.css";
 import DemoContext from '../../contexts/Democontext';
-const Navbar = (props) => {
+const Navbar = () => {
 
     const context = useContext(DemoContext);
     const { setName, imageData, setImageData, darkMode, setDarkMode } = context;
-
-
+    let navigate = useNavigate();
     const [postItems, setPostItems] = useState({ userid: "", image: null, description: "", location: "" });
     const [showModal, setShowModal] = useState(true);
     const { image, description, location } = postItems;
@@ -44,6 +43,13 @@ const Navbar = (props) => {
         setPostItems({ ...postItems, image: e.target.files[0] });
     }
 
+    const handleLogout = () => {
+        localStorage.removeItem('login');
+        localStorage.removeItem('name');
+        localStorage.removeItem('userId');
+        navigate('/login');
+    }
+
     useEffect(() => {
         const Storedname = localStorage.getItem('name');
         const StoredImage = localStorage.getItem('image');
@@ -54,7 +60,7 @@ const Navbar = (props) => {
 
     return (
         <div>
-            <nav className={`navbar mx-auto navbar-expand-lg ${!darkMode ? "bg-light" : "bg-dark navbar-dark"}`}>
+            <nav className={`navbar mx-auto navbar-expand-lg ${!darkMode ? "" : "navbar-dark"}`} style={{ backgroundColor: darkMode ? 'black' : '#F8F9FA' }}>
                 <div className="container-fluid">
                     <Link className="navbar-brand brand-logo" to="/">{userId}</Link>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -70,11 +76,17 @@ const Navbar = (props) => {
                         <i className='icon-bg' onClick={() => setDarkMode(!darkMode)}>
                             {!darkMode ? <BiMoon className='nav-icons' /> : <BiSun className='nav-icons' />}
                         </i>
-                        <i className="icon-bg">
-                            <Link to="/profile">
-                                <img className='profile-pic' src={imageData} alt="" />
-                            </Link>
-                        </i>
+                        <div className="dropdown">
+                            <i className="icon-bg" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Link to="/profile">
+                                    <img className='profile-pic' src={imageData} alt="" />
+                                </Link>
+                            </i>
+                            <ul className="dropdown-menu" style={{ backgroundColor: darkMode ? 'black' : '#F8F9FA' }}>
+                                <li><Link  style={{ color: darkMode ? "white" : "black" }} className="dropdown-item" to="/profile">profile</Link></li>
+                                <li style={{ color: darkMode ? "white" : "black" }} className="dropdown-item" onClick={handleLogout}>logout</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </nav>

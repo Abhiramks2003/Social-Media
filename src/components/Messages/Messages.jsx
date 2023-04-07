@@ -15,7 +15,7 @@ const Messages = () => {
     const { darkMode } = context;
     return (
         <div className='d-flex flex-column'>
-            <div className={`${darkMode?"bg-dark":"bg-light"} msg-div`}>
+            <div className={`msg-div`} style={{ backgroundColor: darkMode ? 'black' : '#F8F9FA' }}>
                 <div className="d-flex justify-content-between mx-3 py-3">
                     <h6>Messages</h6>
                     <Link to="/" style={{ color: "#818589", textDecoration: "none", fontWeight: "500" }}><BiMessageSquareAdd /></Link>

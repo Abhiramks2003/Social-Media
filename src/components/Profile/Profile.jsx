@@ -7,10 +7,10 @@ import Profilebar from './Profilebar';
 import DemoContext from '../../contexts/Democontext';
 import MyPosts from './MyPosts';
 
+
 const Profile = () => {
   const context = useContext(DemoContext);
-  const [myPosts, setMyPosts] = useState([]);
-  const { name, setName, imageData, setImageData } = context;
+  const { name, setName, imageData, setImageData, myPosts, setMyPosts,darkMode } = context;
   const host = 'http://192.168.1.53:5000';
   const userId = localStorage.getItem('userId');
   let url = `${host}/api/profile/${userId}`;
@@ -20,6 +20,19 @@ const Profile = () => {
       const res = await axios.get(url);
       setMyPosts(res.data);
       console.log(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const deletePost = async () => {
+      const res = await axios.delete(url,)
+  }
+
+  //updating profile PUT
+  const updateProfile = async () => {
+    try {
+      const res = await axios.put(url);
     } catch (error) {
       console.error(error);
     }
@@ -36,15 +49,15 @@ const Profile = () => {
 
   return (
     <>
-      <div className='profile-page'>
+      <div className='profile-page'  style={{ backgroundColor: darkMode ? 'black' : '#F8F9FA',color: !darkMode ? "black" : "white"  }}>
         <Profilebar />
-
         <div className="profile-main">
           <img src={imageData} className="profile-dp" alt="" />
+
           <h4>{name}</h4>
           <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
           <div className='publicity'>
-            <button className='follow-btn' style={{ backgroundColor: "white", color: "black" }}> Posts
+            <button className='follow-btn'  style={{ color: darkMode ? "black" : "white" }}> Posts
               <span className="followers">&nbsp; {myPosts.length} </span>
             </button>
             <button className='follow-btn'> Followers
@@ -57,7 +70,7 @@ const Profile = () => {
         </div>
         <Tabs>
           <TabList>
-            <div className='posts-saved-like border-top border-bottom'>
+            <div className='posts-saved-like'>
               <Tab>Posts</Tab>
               <Tab>Videos</Tab>
               <Tab>Saved</Tab>

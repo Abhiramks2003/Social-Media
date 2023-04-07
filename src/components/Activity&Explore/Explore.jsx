@@ -13,7 +13,7 @@ const Explore = () => {
     const context = useContext(DemoContext);
     const {darkMode} = context;
     return (
-        <div className={`${!darkMode ? "bg-light" : "bg-dark"} explore-div`}>
+        <div className='explore-div'  style={{ backgroundColor: darkMode ? 'black' : '#F8F9FA' }}>
             <div className="d-flex justify-content-between mx-3 py-3 border-bottom">
                 <h6>Explore</h6>
                 <Link to="/explore" onClick={()=>{}} style={{ color: "#818589", textDecoration: "none", fontWeight: "500" }}>See all</Link>

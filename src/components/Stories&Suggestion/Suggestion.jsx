@@ -6,7 +6,7 @@ const Suggestion = () => {
     const context = useContext(DemoContext);
     const { darkMode } = context;
     return (
-        <div className={`${!darkMode ? "bg-light" : "bg-dark"} msg-div`}>
+        <div className='msg-div' style={{ backgroundColor: darkMode ? 'black' : '#F8F9FA' }}>
             <div className="d-flex justify-content-between mx-3 py-3 border-bottom">
                 <h6>Suggested For You</h6>
                 <Link to="/" style={{ color: "#818589", textDecoration: "none", fontWeight: "500" }}>See all</Link>

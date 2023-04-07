@@ -14,16 +14,19 @@ function App() {
   const [name, setName] = useState('')
   const [imageData, setImageData] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
+  const [myPosts, setMyPosts] = useState([]);
   const contextValue = {
     name,
     imageData,
     setName,
     setImageData,
     darkMode,
-    setDarkMode
+    setDarkMode,
+    myPosts,
+    setMyPosts
   }
 
-  
+
   return (
 
     <div className='App'>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { AiFillHeart } from "react-icons/ai";
-import { FaRegComment, FaBookmark } from "react-icons/fa";
-import { GrShareOption } from "react-icons/gr";
+import { FaRegComment, FaBookmark,FaShare } from "react-icons/fa";
 import DemoContext from '../../contexts/Democontext';
 import axios from 'axios';
 const Postitem = (props) => {
@@ -11,12 +10,12 @@ const Postitem = (props) => {
     const [likeStatus, setLikeStatus] = useState(false);
 
     const context = useContext(DemoContext);
-    const { darkMode } = context;
+    const { darkMode, myPosts, setMyPosts } = context;
     const { post, index } = props;
     const { _id, like, userid, datetime, likecount, description, images, location, userImage } = post;
+    const host = 'http://192.168.1.43:5000';
 
     const handleLike = async () => {
-        const host = 'http://192.168.1.53:5000';
         let url = `${host}/api/like`;
         const userId = localStorage.getItem('userId');
         try {
@@ -31,9 +30,15 @@ const Postitem = (props) => {
         }
     }
 
+    const otherProfileHandler = async () => {
+        let profileUrl = `${host}/api/profile/${userid}`;
+        const res = await axios.get(profileUrl);
+
+    }
+
     const handleComment = async () => {
         //api call
-
+        
     }
 
     useEffect(() => {
@@ -57,7 +62,7 @@ const Postitem = (props) => {
     return (
         <>
             <div className="mx-3 main-post">
-                <div className="post-toggle d-flex">
+                <div className="post-toggle d-flex" onClick={otherProfileHandler}>
                     <i className='activity-icon-bg'>
                         <img className='profile-pic' src={postUserImage} alt="" />
                     </i>
@@ -70,10 +75,10 @@ const Postitem = (props) => {
                 <div className="like-comment-save">
                     <AiFillHeart onClick={handleLike} className={like || likeStatus ? "liked" : "like-icon"} />
                     <i type="button" data-bs-toggle="modal" data-bs-target={`#exampleModal-${index}`}>
-                        <FaRegComment onClick={handleComment} className='search-icon mx-4' />
+                        <FaRegComment style={{color:"#0275d8"}} onClick={handleComment} className='search-icon mx-4' />
                     </i>
                     <i type="button" data-bs-toggle="modal" data-bs-target={`#exampleModal2-${index}`}>
-                        <GrShareOption className='search-icon' />
+                        <FaShare style={{color:"#0275d8"}} className='search-icon' />
                     </i>
                     <FaBookmark onClick={handleSave} className={save ? "save-icon-clicked" : "save-icon"} />
                 </div>
@@ -127,7 +132,7 @@ const Postitem = (props) => {
                                     <i type="button">
                                         <FaRegComment className='search-icon mx-4' />
                                     </i>
-                                    <GrShareOption className='search-icon' />
+                                    <FaShare className='search-icon' />
                                     <FaBookmark onClick={handleSave} className={save ? "save-icon-clicked" : "save-icon"} />
                                 </div>
                                 <div className="add-comment">

@@ -43,7 +43,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    margin-top: 2rem;
+    padding-top: 2rem;
 }
 
 .profile-main h6{

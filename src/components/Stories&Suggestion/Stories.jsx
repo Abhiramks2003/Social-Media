@@ -8,7 +8,7 @@ const Stories = () => {
   }
 
   const context = useContext(DemoContext);
-  const { imageData, setImageData,darkMode } = context;
+  const { imageData, setImageData, darkMode } = context;
 
   useEffect(() => {
     const StoredImage = localStorage.getItem('image');
@@ -17,7 +17,7 @@ const Stories = () => {
   }, [])
 
   return (
-    <div className={`${!darkMode ? "bg-light" : "bg-dark text-white"} story-div`}>
+    <div className='story-div border border-secondary border-start-0 border-end-0' style={{ backgroundColor: darkMode ? 'black' : '#F8F9FA' }}>
       <div className="story-list">
         <div className="story-item">
           <img className='story-pic mx-2 my-3' src={imageData} alt="" />
@@ -38,16 +38,16 @@ const Stories = () => {
                 <div className="modal-body">
 
                   <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="false">
-                    
+
                     <div className="carousel-inner">
                       <div className="carousel-item active">
-                        <img src="https://cdn.imgbin.com/8/20/20/imgbin-samsung-galaxy-a8-a8-user-login-telephone-avatar-pawn-pvE7Qhr6Zk7kLJpGiWZ9FFRVf.jpg" className="d-block w-100" alt="..." />
+                        <img src="https://cdn.imgbin.com/8/20/20/imgbin-samsung-galaxy-a8-a8-user-login-telephone-avatar-pawn-pvE7Qhr6Zk7kLJpGiWZ9FFRVf.jpg" className="d-block story-carousel-img" alt="..." />
                       </div>
                       <div className="carousel-item">
-                        <img src="https://cdn.imgbin.com/8/20/20/imgbin-samsung-galaxy-a8-a8-user-login-telephone-avatar-pawn-pvE7Qhr6Zk7kLJpGiWZ9FFRVf.jpg" className="d-block w-100" alt="..." />
+                        <img src="https://cdn.imgbin.com/8/20/20/imgbin-samsung-galaxy-a8-a8-user-login-telephone-avatar-pawn-pvE7Qhr6Zk7kLJpGiWZ9FFRVf.jpg" className="d-block story-carousel-img" alt="..." />
                       </div>
                       <div className="carousel-item">
-                        <img src="https://cdn.imgbin.com/8/20/20/imgbin-samsung-galaxy-a8-a8-user-login-telephone-avatar-pawn-pvE7Qhr6Zk7kLJpGiWZ9FFRVf.jpg" className="d-block w-100" alt="..." />
+                        <img src="https://cdn.imgbin.com/8/20/20/imgbin-samsung-galaxy-a8-a8-user-login-telephone-avatar-pawn-pvE7Qhr6Zk7kLJpGiWZ9FFRVf.jpg" className="d-block story-carousel-img" alt="..." />
                       </div>
                     </div>
                     <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">

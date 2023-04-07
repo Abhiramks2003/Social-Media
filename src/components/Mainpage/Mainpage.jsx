@@ -10,23 +10,23 @@ import "./Mainpage.css";
 import Footer from './Footer'
 import Navbar from './Navbar'
 import DemoContext from '../../contexts/Democontext'
-const Mainpage = (props) => {
+const Mainpage = () => {
   const navigate = useNavigate();
   const context = useContext(DemoContext);
   const { darkMode } = context;
-  useEffect(() => {
-    if (localStorage.getItem('login')) {
+  // useEffect(() => {
+  //   if (localStorage.getItem('login')) {
 
-    }
-    else {
-      navigate('/login');
-    }
-  }, [navigate])
+  //   }
+  //   else {
+  //     //navigate('/login');
+  //   }
+  // }, [navigate])
 
   return (
     <>
       <Navbar />
-      <div className='d-flex main-page justify-content-between' style={{backgroundColor:darkMode?'black':'white'}}>
+      <div className={`d-flex main-page justify-content-between ${!darkMode ? "bg-light" : "bg-dark"}`}>
         <div className="act-exp">
           <Activity />
           <Explore />

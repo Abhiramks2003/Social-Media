@@ -1,13 +1,13 @@
-import React,{useContext} from 'react'
+import React, { useContext } from 'react'
 import "./Activity.css"
 import { Link } from 'react-router-dom'
 import Footer from '../Mainpage/Footer'
 import DemoContext from '../../contexts/Democontext'
 const Activity = () => {
     const context = useContext(DemoContext);
-    const {darkMode} = context;
+    const { darkMode } = context;
     return (
-        <div className={`${!darkMode ? "bg-light" : "bg-dark"} activity-div`}>
+        <div className='activity-div' style={{ backgroundColor: darkMode ? 'black' : '#F8F9FA' }}>
 
             <div className="d-flex justify-content-between mx-3 py-3 border-bottom">
                 <h6>Activity</h6>
@@ -44,7 +44,7 @@ const Activity = () => {
                 </div>
             </div>
             <div className='ft'>
-            <Footer/>
+                <Footer />
             </div>
         </div>
     )
